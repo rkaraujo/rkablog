@@ -12,6 +12,7 @@
 		$scope.create = function(post) {
 			$http.put('/admin/posts', post).success(function(data) {
 				$scope.posts.push(data);
+				$('#newPostModal').modal('hide');																																																																
 			});
 		};
 	}]);
