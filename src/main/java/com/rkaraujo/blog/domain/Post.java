@@ -4,10 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 @Entity
+@EntityListeners(Post.DateTrigger.class)
 public class Post {
 
 	@Id
@@ -25,7 +29,7 @@ public class Post {
 	
 	@Column(nullable = false)
 	private Date updatedAt;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -64,6 +68,19 @@ public class Post {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	public static class DateTrigger {
+		@PrePersist
+		public void create(Post post) {
+			post.setCreatedAt(new Date());
+			post.setUpdatedAt(new Date());
+		}
+
+		@PreUpdate
+		public void update(Post post) {
+			post.setUpdatedAt(new Date());
+		}
 	}
 	
 }

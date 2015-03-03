@@ -20,9 +20,4 @@ public class PostController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/posts.html", method = RequestMethod.POST)
-	public String create() {
-		return "redirect:index";
-	}
-
 }
