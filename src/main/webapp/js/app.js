@@ -10,12 +10,17 @@
 		});
 		
 		$scope.create = function(post) {
-			$http.put('/admin/posts', post).success(function(data) {
-				$scope.posts.push(data);
-				$('#newPostModal').modal('hide');
-				$('#message-success').removeClass('hidden');
-				$('#message-success').addClass('show');																																																																
-			});
+			$http.put('/admin/posts', post)
+				.success(function(data) {
+					$scope.posts.unshift(data);
+					$scope.message = 'Post "' + post.title + '" salvo com sucesso';
+					$scope.post = {};
+					$scope.errorMessage = null;
+					$('#newPostModal').modal('hide');
+				})
+				.error(function() {
+					$scope.errorMessage = 'Erro ao salvar Post';
+				});
 		};
 	}]);
 	

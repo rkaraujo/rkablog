@@ -30,6 +30,9 @@ public class Post {
 	@Column(nullable = false)
 	private Date updatedAt;
 	
+	@Column
+	private Date publishedAt;
+
 	public Integer getId() {
 		return id;
 	}
@@ -70,6 +73,14 @@ public class Post {
 		this.updatedAt = updatedAt;
 	}
 	
+	public Date getPublishedAt() {
+		return publishedAt;
+	}
+
+	public void setPublishedAt(Date publishedAt) {
+		this.publishedAt = publishedAt;
+	}
+
 	public static class DateTrigger {
 		@PrePersist
 		public void create(Post post) {
