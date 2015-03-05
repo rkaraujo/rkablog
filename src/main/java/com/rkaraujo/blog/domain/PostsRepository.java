@@ -7,5 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface PostsRepository extends CrudRepository<Post, Integer> {
 
 	Page<Post> findAll(Pageable pageable);
+	
+	Page<Post> findByPublishedAtIsNotNull(Pageable pageable);
 
 }

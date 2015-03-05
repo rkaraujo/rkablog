@@ -13,12 +13,23 @@
 
 <body>
 	<div class="container">
-		<h1>Posts</h1>
-
-		<div class="row" th:each="post : ${posts}">
-			<div class="col-xs-12">
-				<h2 th:text="${post.title}">Title</h2>
-				<p th:text="${post.content}">Content</p>
+		<div class="row">
+			<div class="col-md-8">
+				<h1>Posts</h1>
+				<div class="row" th:each="post : ${posts}">
+					<div class="col-xs-12">
+						<h2 th:text="${post.title}">Title</h2>
+						<p th:text="${post.content}">Content</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h3>Recent Posts</h3>
+				<div class="row">
+					<ul th:each="post : ${posts}">
+						<li th:text="${post.title}">Title</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -15,11 +15,28 @@
 					$scope.posts.unshift(data);
 					$scope.message = 'Post "' + post.title + '" salvo com sucesso';
 					$scope.post = {};
-					$scope.errorMessage = null;
+					$scope.saveErrorMessage = null;
 					$('#newPostModal').modal('hide');
 				})
 				.error(function() {
-					$scope.errorMessage = 'Erro ao salvar Post';
+					$scope.saveErrorMessage = 'Erro ao salvar Post';
+				});
+		};
+
+		$scope.publish = function(id) {
+			$http.post('/admin/posts/' + id + '/publish')
+				.success(function(data) {
+					$.each($scope.posts, function(index, value) {
+						if (value.id == id) {
+							$scope.posts[index] = data;
+							return false;
+						}
+					});
+					$scope.message = 'Post "' + data.title + '" publicado com sucesso';
+					$scope.errorMessage = null;
+				})
+				.error(function() {
+					$scope.errorMessage = 'Erro ao publicar Post';
 				});
 		};
 	}]);
