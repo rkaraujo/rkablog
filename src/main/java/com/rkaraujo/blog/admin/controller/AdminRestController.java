@@ -36,8 +36,13 @@ public class AdminRestController {
 	}
 
 	@RequestMapping(value = "/posts", method = RequestMethod.POST)
-	public Post create(@RequestBody Post post) {
+	public Post save(@RequestBody Post post) {
 		return postsRepository.save(post);
+	}
+
+	@RequestMapping(value = "/posts/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Integer id) {
+		postsRepository.delete(id);;
 	}
 
 	@RequestMapping(value = "/posts/{id}/publish", method = RequestMethod.POST)

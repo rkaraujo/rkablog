@@ -39,6 +39,7 @@
 							<td>
 								<button type="button" class="btn btn-primary" ng-click="edit(post)" data-toggle="modal" data-target="#newPostModal">Editar</button>
 								<button type="button" class="btn btn-primary" ng-click="publish(post.id)" ng-hide="post.publishedAt">Publicar</button>
+								<button type="button" class="btn btn-danger" ng-click="delete(post.id)">Excluir</button>
 							</td>
 						</tr>
 					</tbody>
