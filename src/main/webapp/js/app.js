@@ -10,17 +10,33 @@
 		});
 		
 		$scope.create = function(post) {
-			$http.put('/admin/posts', post)
+			$http.post('/admin/posts', post)
 				.success(function(data) {
-					$scope.posts.unshift(data);
+					if (post.id == null) {
+						$scope.posts.unshift(data);
+					} else {
+						$.each($scope.posts, function(index, value) {
+							if (value.id == data.id) {
+								$scope.posts[index] = data;
+								return false;
+							}
+						});
+					} 
 					$scope.message = 'Post "' + post.title + '" salvo com sucesso';
-					$scope.post = {};
 					$scope.saveErrorMessage = null;
 					$('#newPostModal').modal('hide');
 				})
 				.error(function() {
 					$scope.saveErrorMessage = 'Erro ao salvar Post';
 				});
+		};
+
+		$scope.new = function() {
+			$scope.editingPost = {};
+		};
+
+		$scope.edit = function(post) {
+			$scope.editingPost = angular.copy(post);
 		};
 
 		$scope.publish = function(id) {

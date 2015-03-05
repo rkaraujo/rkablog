@@ -35,7 +35,7 @@ public class AdminRestController {
 		return postsPage.getContent();
 	}
 
-	@RequestMapping(value = "/posts", method = RequestMethod.PUT)
+	@RequestMapping(value = "/posts", method = RequestMethod.POST)
 	public Post create(@RequestBody Post post) {
 		return postsRepository.save(post);
 	}
