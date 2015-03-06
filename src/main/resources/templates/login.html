@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <p th:if="${error}">Wrong user or password</p>
+    <form  th:action="@{/login.html}" method="POST">
+      <label for="username">Username</label>:
+      <input type="text" id="username" name="username" /> <br />
+      <label for="password">Password</label>:
+      <input type="password" id="password" name="password" /> <br />
+      <input type="submit" value="Log in" id="login" />
+    </form>
+  </body>
+</html>

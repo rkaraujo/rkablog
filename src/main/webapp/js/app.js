@@ -2,6 +2,12 @@
 	
 	var app = angular.module('admin', []);
 	
+	app.run(function($http) {
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");	
+		$http.defaults.headers.common[header] = token;
+	});
+	
 	app.controller('AdminPostCtrl', ['$scope', '$window', '$http', function($scope, $window, $http) {
 		$scope.posts = [];
 		

@@ -17,40 +17,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rkaraujo.blog.domain.Post;
-import com.rkaraujo.blog.domain.PostsRepository;
+import com.rkaraujo.blog.domain.PostRepository;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminRestController {
 
 	@Autowired
-	private PostsRepository postsRepository;
+	private PostRepository postRepository;
 
 	@RequestMapping(value = "/posts", method = RequestMethod.GET)
 	public List<Post> posts() {
+		// TODO set page
 		Pageable pageable = new PageRequest(0, 25, new Sort(new Order(
 				Direction.DESC, "publishedAt"), new Order(Direction.DESC,
 				"updatedAt")));
-		Page<Post> postsPage = postsRepository.findAll(pageable);
+		Page<Post> postsPage = postRepository.findAll(pageable);
 		return postsPage.getContent();
 	}
 
 	@RequestMapping(value = "/posts", method = RequestMethod.POST)
 	public Post save(@RequestBody Post post) {
-		return postsRepository.save(post);
+		return postRepository.save(post);
 	}
 
 	@RequestMapping(value = "/posts/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") Integer id) {
-		postsRepository.delete(id);;
+		postRepository.delete(id);;
 	}
 
 	@RequestMapping(value = "/posts/{id}/publish", method = RequestMethod.POST)
 	public Post publish(@PathVariable("id") Integer id) {
 		System.out.println(id);
-		Post post = postsRepository.findOne(id);
+		Post post = postRepository.findOne(id);
 		post.setPublishedAt(new Date());
-		postsRepository.save(post);
+		postRepository.save(post);
 		return post;
 	}
 
