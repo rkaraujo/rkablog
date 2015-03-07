@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Blog</title>
+	<title th:text="${post.title}">Post</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 	<link rel="stylesheet" href="/css/bootstrap.min.css"></link>
 	<script src="/js/bootstrap.min.js"></script>
@@ -16,13 +16,9 @@
 		<div class="row">
 
 			<div id="content" class="col-md-8">
-				<h3>Blog Title</h3>
-				
-				<div th:each="post : ${posts}" class="post-summary">
-					<h2 th:inline="text">[[${post.title}]] <small>- [[${#calendars.format(post.publishedAt,'dd MMM yyyy')}]]</small></h2>
-					<p th:text="${#strings.abbreviate(post.content,460)}"></p>
-					<a th:href="'/p/' + ${post.slugTitle} + '.html'" class="btn-custom btn-post">Continue Reading</a>
-				</div>
+				<h2 th:inline="text">[[${post.title}]] <small>- [[${#calendars.format(post.publishedAt,'dd MMM yyyy')}]]</small></h2>
+				<p th:text="${post.content}"></p>
+				<a href="/index.html" class="btn-custom btn-post">Back to Blog Index</a>
 			</div>
 			
 			<div th:include="inc/side :: side" id="side" class="col-md-4"></div>

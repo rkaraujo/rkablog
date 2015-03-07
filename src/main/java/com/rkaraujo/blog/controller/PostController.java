@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,6 +29,13 @@ public class PostController {
 		Page<Post> page = postRepository.findByPublishedAtIsNotNull(pageable);
 		model.addAttribute("posts", page.getContent());
 		return "index";
+	}
+
+	@RequestMapping(value = "/p/{slugTitle}.html", method = RequestMethod.GET)
+	public String show(@PathVariable("slugTitle") String slugTitle, Model model) {
+		Post post = postRepository.findBySlugTitleAndPublishedAtIsNotNull(slugTitle);
+		model.addAttribute("post", post);
+		return "show";
 	}
 
 }

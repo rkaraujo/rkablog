@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rkaraujo.blog.domain.Post;
 import com.rkaraujo.blog.domain.PostRepository;
+import com.rkaraujo.blog.util.StrUtil;
 
 @RestController
 @RequestMapping("/admin")
@@ -38,6 +39,7 @@ public class AdminRestController {
 
 	@RequestMapping(value = "/posts", method = RequestMethod.POST)
 	public Post save(@RequestBody Post post) {
+		post.setSlugTitle(StrUtil.slug(post.getTitle()));
 		return postRepository.save(post);
 	}
 
@@ -48,7 +50,6 @@ public class AdminRestController {
 
 	@RequestMapping(value = "/posts/{id}/publish", method = RequestMethod.POST)
 	public Post publish(@PathVariable("id") Integer id) {
-		System.out.println(id);
 		Post post = postRepository.findOne(id);
 		post.setPublishedAt(new Date());
 		postRepository.save(post);

@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, h6 {
 	color: #555;
 }
 
-h2 {
+.post-summary {
 	margin-top: 40px;
 }
 
@@ -14,13 +14,13 @@ p {
 	color: #777;
 }
 
-.btn-continue {
+.btn-post {
 	background-color: #BBB;
 	border-color: #BBB;
 	color: #FFF;
 }
 
-.btn-continue:hover{
+.btn-post:hover{
 	background-color: #666;
 	color: #FFF;
 }

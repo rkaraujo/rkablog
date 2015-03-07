@@ -7,29 +7,35 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "posts", indexes = { @Index(name = "index_slug_title", columnList = "slugTitle", unique = true) })
 @EntityListeners(Post.DateTrigger.class)
 public class Post {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
+
 	@Column(nullable = false)
 	private String title;
-	
+
+	@Column(nullable = false)
+	private String slugTitle;
+
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
-	
+
 	@Column(nullable = false)
 	private Date createdAt;
-	
+
 	@Column(nullable = false)
 	private Date updatedAt;
-	
+
 	@Column
 	private Date publishedAt;
 
@@ -72,13 +78,21 @@ public class Post {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
+
 	public Date getPublishedAt() {
 		return publishedAt;
 	}
 
 	public void setPublishedAt(Date publishedAt) {
 		this.publishedAt = publishedAt;
+	}
+
+	public String getSlugTitle() {
+		return slugTitle;
+	}
+
+	public void setSlugTitle(String slugTitle) {
+		this.slugTitle = slugTitle;
 	}
 
 	public static class DateTrigger {
@@ -93,5 +107,5 @@ public class Post {
 			post.setUpdatedAt(new Date());
 		}
 	}
-	
+
 }

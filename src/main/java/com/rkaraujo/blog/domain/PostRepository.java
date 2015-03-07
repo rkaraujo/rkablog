@@ -9,5 +9,7 @@ public interface PostRepository extends CrudRepository<Post, Integer> {
 	Page<Post> findAll(Pageable pageable);
 	
 	Page<Post> findByPublishedAtIsNotNull(Pageable pageable);
+	
+	Post findBySlugTitleAndPublishedAtIsNotNull(String slugTitle);
 
 }
