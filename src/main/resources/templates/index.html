@@ -2,36 +2,32 @@
 <html>
 
 <head>
-<meta charset="utf-8"></meta>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
-<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-<title>Blog</title>
-<link rel="stylesheet" href="/css/bootstrap.min.css"></link>
-<script src="/js/jquery-2.1.3.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+	<title>Blog</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<link rel="stylesheet" href="/css/bootstrap.min.css"></link>
+	<script src="/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="/css/blog.css"></link>
+	<link rel="stylesheet" href="/css/typography.css"></link>
+	<link rel="stylesheet" href="/css/height.css"></link>
 </head>
 
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
-				<h1>Posts</h1>
-				<div class="row" th:each="post : ${posts}">
-					<div class="col-xs-12">
-						<h2 th:text="${post.title}">Title</h2>
-						<p th:text="${post.content}">Content</p>
-					</div>
+
+			<div id="content" class="col-md-8">
+				<h3>Blog Title</h3>
+				
+				<div th:each="post : ${posts}" th:inline="text">
+					<h2>[[${post.title}]] <small>[[${#calendars.format(post.publishedAt,'dd MMM yyyy')}]]</small></h2>
+					<p>[[${#strings.abbreviate(post.content,460)}]]</p>
+					<button type="button" class="btn-custom btn-continue">Continue Reading</button>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<h3>Recent Posts</h3>
-				<div class="row">
-					<ul th:each="post : ${posts}">
-						<li th:text="${post.title}">Title</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+			
+			<div th:include="inc/side :: side" id="side" class="col-md-4"></div>
+			
+		</div>		
 	</div>
 </body>
 

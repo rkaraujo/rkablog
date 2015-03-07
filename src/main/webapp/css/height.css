@@ -1,0 +1,13 @@
+html, body, .container, .row {
+	min-height: 100%;
+}
+
+/*
+#content {
+	padding-bottom: 100%;
+}
+*/
+
+#side {
+	padding-bottom: 40%;
+}
