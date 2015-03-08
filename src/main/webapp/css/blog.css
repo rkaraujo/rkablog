@@ -10,19 +10,12 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 40px;
 }
 
-p {
+p, li {
 	color: #777;
 }
 
-.btn-post {
-	background-color: #BBB;
-	border-color: #BBB;
-	color: #FFF;
-}
-
-.btn-post:hover{
-	background-color: #666;
-	color: #FFF;
+#content {
+	padding-bottom: 30px;
 }
 
 #side {
@@ -39,6 +32,18 @@ p {
 
 #side a {
 	color: #EEE;
+}
+
+.btn-post {
+	background-color: #AAA;
+	border-color: #AAA;
+	color: #FFF;
+}
+
+.btn-post:hover{
+	background-color: #666;
+	color: #FFF;
+	text-decoration: none;
 }
 
 .btn-custom {
@@ -61,4 +66,10 @@ p {
 	background-image: none;
 	border: 1px solid transparent;
 	border-radius: 4px;
+}
+
+@media (min-width: 992px) {
+	.resume-info {
+		padding-top: 20px;
+	}
 }

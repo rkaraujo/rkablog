@@ -30,9 +30,7 @@ public class AdminRestController {
 	@RequestMapping(value = "/posts", method = RequestMethod.GET)
 	public List<Post> posts() {
 		// TODO set page
-		Pageable pageable = new PageRequest(0, 25, new Sort(new Order(
-				Direction.DESC, "publishedAt"), new Order(Direction.DESC,
-				"updatedAt")));
+		Pageable pageable = new PageRequest(0, 25, new Sort(new Order(Direction.DESC, "updatedAt")));
 		Page<Post> postsPage = postRepository.findAll(pageable);
 		return postsPage.getContent();
 	}
