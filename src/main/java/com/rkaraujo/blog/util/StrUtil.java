@@ -6,19 +6,17 @@ public final class StrUtil {
 		return str.toLowerCase().replaceAll("\\W", " ").replaceAll("\\s+", "-");
 	}
 
-	public static final String startTrim(String str, char c) {
-		int i = 0;
-		while (str.charAt(i) == '\n') {
-			i++;
+	public static final String trim(String str, char c) {
+		int start = 0;
+		while (str.charAt(start) == c) {
+			start++;
 		}
-		return str.substring(i, str.length());
-	}
 
-	public static final String endTrim(String content, char c) {
-		int i = content.length() - 1;
-		while (content.charAt(i) == '\n') {
-			i--;
+		int end = str.length() - 1;
+		while (str.charAt(end) == c) {
+			end--;
 		}
-		return content.substring(0, i + 1);
+
+		return str.substring(start, end + 1);
 	}
 }
