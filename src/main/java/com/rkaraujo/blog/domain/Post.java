@@ -16,6 +16,8 @@ import javax.persistence.Table;
 @Table(name = "posts", indexes = { @Index(name = "index_slug_title", columnList = "slugTitle", unique = true) })
 @EntityListeners(Post.DateTrigger.class)
 public class Post {
+	
+	private static final int SUMMARY_CONTENT_CUT_INDEX = 460;
 
 	@Id
 	@GeneratedValue
@@ -38,6 +40,51 @@ public class Post {
 
 	@Column
 	private Date publishedAt;
+	
+	public String getHtmlContent() {
+		StringBuilder sb = new StringBuilder("<p>");
+
+		// replace newLine in between with </p><p>
+		boolean isNewParagraph = false;
+		for (int i = 0; i < content.length(); i++) {
+			char charAt = content.charAt(i);
+			
+			while (charAt == '\n') {
+				charAt = content.charAt(++i);
+				isNewParagraph = true;
+			}
+			
+			if (!isNewParagraph) {
+				sb.append(charAt);
+			} else {
+				sb.append("</p><p>").append(charAt);
+				isNewParagraph = false;
+			}
+		}
+		sb.append("</p>");
+		return sb.toString();
+	}
+
+	public String getSummaryContent() {
+		int endIndex = content.indexOf('\n');
+		if (endIndex == -1) {
+			endIndex = content.length();
+		}
+		
+		if (endIndex > SUMMARY_CONTENT_CUT_INDEX) {
+			for (int i = SUMMARY_CONTENT_CUT_INDEX; i >= 0; i--) {
+				char character = content.charAt(i);
+				boolean previousIsNotAComma = (i - 1 >= 0 && content.charAt(i - 1) != ',');
+				if (character == ',' || (character == ' ' && previousIsNotAComma)) {
+					return content.substring(0, i) + " ...";
+				} else if (character == '.') {
+					return content.substring(0, i + 1);
+				}
+			}
+		}
+		
+		return content.substring(0, endIndex + 1);
+	}
 
 	public Integer getId() {
 		return id;

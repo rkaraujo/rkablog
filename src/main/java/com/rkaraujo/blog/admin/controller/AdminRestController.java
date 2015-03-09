@@ -37,6 +37,7 @@ public class AdminRestController {
 
 	@RequestMapping(value = "/posts", method = RequestMethod.POST)
 	public Post save(@RequestBody Post post) {
+		post.setContent(StrUtil.trim(post.getContent(), '\n'));
 		post.setSlugTitle(StrUtil.slug(post.getTitle()));
 		return postRepository.save(post);
 	}

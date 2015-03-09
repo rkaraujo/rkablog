@@ -2,16 +2,12 @@ body {
 	background-color: #FAFAFA;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	color: #555;
+h1, h2, h3, h4, h5, h6, p, li {
+	color: #444;
 }
 
 .post-summary {
 	margin-top: 40px;
-}
-
-p, li {
-	color: #777;
 }
 
 #content {
