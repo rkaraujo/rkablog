@@ -16,8 +16,8 @@
 		<div class="row">
 
 			<div id="content" class="col-md-8">
-				<h2 th:inline="text">[[${post.title}]] <small>- [[${#calendars.format(post.publishedAt,'dd MMM yyyy')}]]</small></h2>
-				<p th:text="${post.content}"></p>
+				<h2 id="post-title" th:inline="text">[[${post.title}]] <small>- [[${#calendars.format(post.publishedAt,'dd MMM yyyy')}]]</small></h2>
+				<div id="post-content" th:utext="${post.htmlContent}"></div>
 				<a href="/index.html" class="btn-custom btn-post">Back to Blog Index</a>
 			</div>
 			

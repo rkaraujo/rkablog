@@ -12,6 +12,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.rkaraujo.blog.util.StrUtil;
+
 @Entity
 @Table(name = "posts", indexes = { @Index(name = "index_slug_title", columnList = "slugTitle", unique = true) })
 @EntityListeners(Post.DateTrigger.class)
@@ -38,6 +40,38 @@ public class Post {
 
 	@Column
 	private Date publishedAt;
+	
+	public String getHtmlContent() {
+		if (content == null) {
+			return null;
+		}
+		String htmlContent = StrUtil.startTrim(content, '\n');
+		htmlContent = StrUtil.endTrim(htmlContent, '\n');
+		
+		StringBuilder sb = new StringBuilder("<p>");
+
+		// replace newLine in between with </p><p>
+		boolean isNewParagraph = false;
+		for (int i = 0; i < htmlContent.length(); i++) {
+			char charAt = htmlContent.charAt(i);
+			
+			while (charAt == '\n') {
+				charAt = htmlContent.charAt(++i);
+				isNewParagraph = true;
+			}
+			
+			if (!isNewParagraph) {
+				sb.append(charAt);
+			} else {
+				sb.append("</p><p>").append(charAt);
+				isNewParagraph = false;
+			}
+		}
+		
+		sb.append("</p>");
+		
+		return sb.toString();
+	}
 
 	public Integer getId() {
 		return id;

@@ -2,43 +2,23 @@ body {
 	background-color: #FAFAFA;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	color: #555;
+h1, h2, h3, h4, h5, h6, p {
+	color: #444;
 }
 
 .post-summary {
 	margin-top: 40px;
 }
 
-p {
-	color: #777;
-}
-
 .btn-post {
-	background-color: #BBB;
-	border-color: #BBB;
+	background-color: #AAA;
+	border-color: #AAA;
 	color: #FFF;
 }
 
 .btn-post:hover{
 	background-color: #666;
 	color: #FFF;
-}
-
-#side {
-	background-color: #555;
-}
-
-#side h1, #side h3 {
-	color: orange;
-}
-
-#side p {
-	color: #CCC;
-}
-
-#side a {
-	color: #EEE;
 }
 
 .btn-custom {
@@ -61,4 +41,28 @@ p {
 	background-image: none;
 	border: 1px solid transparent;
 	border-radius: 4px;
+}
+
+#side {
+	background-color: #555;
+}
+
+#side h1, #side h3 {
+	color: orange;
+}
+
+#side p {
+	color: #CCC;
+}
+
+#side a {
+	color: #EEE;
+}
+
+#post-title {
+	padding-bottom: 20px;
+}
+
+#post-content > p {
+	padding-bottom: 15px;
 }

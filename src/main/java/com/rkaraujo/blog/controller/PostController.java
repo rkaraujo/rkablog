@@ -23,11 +23,11 @@ public class PostController {
 	private PostRepository postRepository;
 	
 	@RequestMapping(value = { "/", "/index.html" }, method = RequestMethod.GET)
-	public String index(Model model) {
-		// TODO set page
-		Pageable pageable = new PageRequest(0, 25, new Sort(new Order(Direction.DESC, "publishedAt")));
-		Page<Post> page = postRepository.findByPublishedAtIsNotNull(pageable);
-		model.addAttribute("posts", page.getContent());
+	public String index(Integer page, Model model) {
+		page = page == null ? 0 : page;
+		Pageable pageable = new PageRequest(page, 4, new Sort(new Order(Direction.DESC, "publishedAt")));
+		Page<Post> posts = postRepository.findByPublishedAtIsNotNull(pageable);
+		model.addAttribute("posts", posts.getContent());
 		return "index";
 	}
 
