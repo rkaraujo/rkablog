@@ -12,9 +12,13 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+
 @Entity
 @Table(name = "posts", indexes = { @Index(name = "index_slug_title", columnList = "slugTitle", unique = true) })
 @EntityListeners(Post.DateTrigger.class)
+@JsonAutoDetect(fieldVisibility=Visibility.ANY, creatorVisibility=Visibility.NONE, getterVisibility=Visibility.NONE, isGetterVisibility=Visibility.NONE, setterVisibility=Visibility.NONE)
 public class Post {
 	
 	private static final int SUMMARY_CONTENT_CUT_INDEX = 460;
@@ -40,6 +44,9 @@ public class Post {
 
 	@Column
 	private Date publishedAt;
+	
+	@Column
+	private String pageDescription;
 	
 	public String getHtmlContent() {
 		StringBuilder sb = new StringBuilder("<p>");
@@ -83,7 +90,7 @@ public class Post {
 			}
 		}
 		
-		return content.substring(0, endIndex + 1);
+		return content.substring(0, endIndex);
 	}
 
 	public Integer getId() {
@@ -140,6 +147,14 @@ public class Post {
 
 	public void setSlugTitle(String slugTitle) {
 		this.slugTitle = slugTitle;
+	}
+
+	public String getPageDescription() {
+		return pageDescription;
+	}
+
+	public void setPageDescription(String pageDescription) {
+		this.pageDescription = pageDescription;
 	}
 
 	public static class DateTrigger {

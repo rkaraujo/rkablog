@@ -7,27 +7,7 @@ h1, h2, h3, h4, h5, h6, p, li {
 }
 
 .post-summary {
-	margin-top: 40px;
-}
-
-#content {
-	padding-bottom: 30px;
-}
-
-#side {
-	background-color: #555;
-}
-
-#side h1, #side h3 {
-	color: orange;
-}
-
-#side p {
-	color: #CCC;
-}
-
-#side a {
-	color: #EEE;
+	margin-top: 35px;
 }
 
 .btn-post {
@@ -62,6 +42,34 @@ h1, h2, h3, h4, h5, h6, p, li {
 	background-image: none;
 	border: 1px solid transparent;
 	border-radius: 4px;
+}
+
+#content {
+	padding-bottom: 30px;
+}
+
+#side {
+	background-color: #555;
+}
+
+#side h1, #side h3 {
+	color: orange;
+}
+
+#side p {
+	color: #CCC;
+}
+
+#side a {
+	color: #EEE;
+}
+
+#post-title {
+	padding-bottom: 20px;
+}
+
+#post-content > p {
+	padding-bottom: 15px;
 }
 
 @media (min-width: 992px) {

@@ -10,7 +10,7 @@ public class AdminController {
 
 	@RequestMapping(value = { "/", "/index.html" }, method = RequestMethod.GET)
 	public String index() {
-		return "/admin/index";
+		return "admin/index";
 	}
 
 }

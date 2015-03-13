@@ -14,7 +14,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/", "/js/**", "/css/**", "/index.html", "/p/**", "/resume.html").permitAll()                  
+			.antMatchers("/", "/js/**", "/css/**", "/img/**", "/index.html", "/p/**", "/resume.html").permitAll()                  
             .antMatchers("/admin/**").hasRole("ADMIN")                             
             .anyRequest().authenticated()                                                   
             .and()
@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("admin").password("golAwcop0%").roles("ADMIN");
 	}
 
 }
