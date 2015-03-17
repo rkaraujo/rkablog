@@ -1,5 +1,5 @@
 body {
-	background-color: #FAFAFA;
+	background-color: #E6E6E6;
 }
 
 h1, h2, h3, h4, h5, h6, p, li {
@@ -45,11 +45,15 @@ h1, h2, h3, h4, h5, h6, p, li {
 }
 
 #content {
+	background-color: #FAFAFA;
+	border-right: 1px solid #CCC;
+	border-left: 1px solid #CCC;
 	padding-bottom: 30px;
 }
 
 #side {
 	background-color: #555;
+	padding-bottom: 30px;
 }
 
 #side h1, #side h3 {
@@ -70,6 +74,16 @@ h1, h2, h3, h4, h5, h6, p, li {
 
 #post-content > p {
 	padding-bottom: 15px;
+}
+
+@media (max-width: 991px) {
+	h1, h2, h3, h4, h5, h6 {
+		margin-top: 0;
+	}
+	
+	#content, #side {
+		padding-top: 20px;
+	}
 }
 
 @media (min-width: 992px) {
