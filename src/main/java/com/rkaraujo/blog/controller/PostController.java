@@ -24,10 +24,10 @@ public class PostController {
 	
 	@RequestMapping(value = { "/", "/index.html" }, method = RequestMethod.GET)
 	public String index(Integer page, Model model) {
-		page = page == null ? 0 : page;
-		Pageable pageable = new PageRequest(page, 4, new Sort(new Order(Direction.DESC, "publishedAt")));
-		Page<Post> posts = postRepository.findByPublishedAtIsNotNull(pageable);
-		model.addAttribute("posts", posts.getContent());
+		page = page == null || page < 0 ? 0 : page;
+		Pageable pageable = new PageRequest(page, 5, new Sort(new Order(Direction.DESC, "publishedAt")));
+		Page<Post> postsPage = postRepository.findByPublishedAtIsNotNull(pageable);
+		model.addAttribute("postsPage", postsPage);
 		return "index";
 	}
 

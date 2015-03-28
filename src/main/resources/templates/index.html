@@ -19,11 +19,18 @@
 			<div id="content" class="col-md-8">
 				<h3>Blog Title</h3>
 				
-				<div th:each="post : ${posts}" class="post-summary">
+				<div th:each="post : ${postsPage.content}" class="post-summary">
 					<h2 th:inline="text">[[${post.title}]] <small>- [[${#calendars.format(post.publishedAt,'dd MMM yyyy')}]]</small></h2>
 					<p th:text="${post.summaryContent}"></p>
 					<a th:href="'/p/' + ${post.slugTitle} + '.html'" class="btn-custom btn-post">Continue Reading</a>
 				</div>
+				
+				<nav>
+					<ul class="pager">
+						<li class="previous" th:if="${postsPage.hasNext()}"><a href="/index.html?page=1" th:href="'/index.html?page=' + ${postsPage.nextPageable().pageNumber}"><span aria-hidden="true">&larr;</span> Older</a></li>
+						<li class="next" th:if="${postsPage.hasPrevious()}"><a href="/index.html?page=0" th:href="'/index.html?page=' + ${postsPage.previousPageable().pageNumber}">Newer <span aria-hidden="true">&rarr;</span></a></li>
+					</ul>
+				</nav>
 			</div>
 			
 			<div th:include="inc/side :: side" id="side" class="col-md-4"></div>
