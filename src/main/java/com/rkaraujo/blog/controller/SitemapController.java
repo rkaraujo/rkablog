@@ -30,7 +30,9 @@ public class SitemapController {
 		appendUrl(sb, baseDomain, "/index.html");
 		Iterable<Post> allPosts = postRepository.findAll();
 		for (Post post : allPosts) {
-			appendUrl(sb, baseDomain, "/p/" + post.getSlugTitle() + ".html");
+			if (post.getPublishedAt() != null) {
+				appendUrl(sb, baseDomain, "/p/" + post.getSlugTitle() + ".html");
+			}
 		}
 		
 		sb.append("</urlset>");
