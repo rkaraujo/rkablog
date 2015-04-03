@@ -3,7 +3,7 @@ package com.rkaraujo.blog.util;
 public final class StrUtil {
 
 	public static final String slug(String str) {
-		str = remove(str, ".");
+		str = remove(str, ".'");
 		str = str.replaceAll("\\W", " ").replaceAll("\\s+", "-");
 		str = trim(str, '-');
 		return str.toLowerCase();
